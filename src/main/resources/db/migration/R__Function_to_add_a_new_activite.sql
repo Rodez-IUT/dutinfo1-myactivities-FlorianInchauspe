@@ -1,2 +1,3 @@
-select * from activity where title = 'my new activity test 2'
-CREATE SEQUENCE id_generator START 100;
+create or replace function add_activity_with_title(title varchar(200)) returns bigint as $$
+    insert into activity (id, title) values (nextval('id_generator'),add_activity_with_title.title) returning id;
+$$
